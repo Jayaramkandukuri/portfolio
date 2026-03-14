@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jayaram Kandukuri Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">  <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
-</head>
+
 <body>
+    <button class="home-btn" id="home-btn" title="Go to Top"><i class="fas fa-home"></i></button>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">🌙</button>
+
     <header>
         <div class="card" style="position: absolute; right: 90px; top: 50%; transform: translateY(-50%);">
-            <h1>Jayaram Kandukuri</h1>
+            <h1 class="typing-text" id="typing-hero">Jayaram Kandukuri</h1>
             <h2>Electronics and Communication</h2>
             <div class="social-links">
-                <a href="https://github.com/Jayaramkandukuri" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/jayaram-kandukuri/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Jayaramkandukuri" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/jayaram-kandukuri/" target="_blank" title="Linkedin"><i class="fab fa-linkedin"></i></a>
+                <a href="Jayaram.pdf" download title="Download Resume"><i class="fas fa-download"></i></a>
             </div>
             <div class="contact-info">
                 <p><i class="fas fa-envelope"></i> <a href="mailto:jayaramknss@gmail.com">jayaramknss@gmail.com</a></p>
@@ -24,112 +28,234 @@
         </div>
     </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a href="#about">About</a>
         <a href="#education">Education</a>
         <a href="#skills">Skills</a>
+        <a href="#Certificates">Certifications</a>
         <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
-    </nav>
+    </nav> -->
 
     <div class="section-container">
-        <section id="about" class="card">
+        <section id="about" class="card fade-in">
             <h2>About Me</h2>
             <p>I am an Electronics and Communication Engineering student with proficiency in C, C++, Java, and Python. I am also conversant with hardware languages like HDL and have hands-on experience with Arduino and Raspberry Pi.</p>
-
             <p>I am passionate about solving real-world problems with technology and continuously strive to improve my skills. My projects and experience have allowed me to explore various technologies, and I am always eager to learn more. I believe in applying my knowledge to create meaningful solutions and contribute to innovative tech projects.</p>
-        
-            <p>I have actively participated in committees and served as one of the student representatives, contributing to leadership and organizational efforts. This experience has further honed my communication and teamwork skills.</p>       
-         
+            <p>I have actively participated in committees and served as one of the student representatives, contributing to leadership and organizational efforts. This experience has further honed my communication and teamwork skills.</p>
             <p>My goal is to work in an environment where I can continue to learn and contribute to groundbreaking projects that have a real-world impact. Through continuous learning and hands-on experience, I aim to make meaningful contributions to the tech industry and help drive forward-thinking solutions for complex challenges.</p>
+            <div class="counters-grid">
+                <div class="counter-box">
+                    <span class="counter-number" data-target="4">0+</span>
+                    <span class="counter-label">Projects</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" data-target="7">0+</span>
+                    <span class="counter-label">Skills</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" data-target="3">0+</span>
+                    <span class="counter-label">Certifications</span>
+                </div>
+                <div class="counter-box">
+                    <span class="counter-number" data-target="4">0+</span>
+                    <span class="counter-label">Platforms</span>
+                </div>
+            </div>
+        
         </section>
 
-        <section id="education" class="card">
+        <section id="education" class="card fade-in">
             <h2>Education</h2>
-            <ul class="education-list">
-                <li class="education-item">
-                    <h3>B.Tech in Electronics and Communication</h3>
-                    <p>SRM University AP, India (2021 - Present)</p>
-                </li>
-                <li class="education-item">
-                    <h3>Class 12th - Intermediate</h3>
-                    <p>Board of Intermediate Education, Andhra Pradesh (2019 - 2021)</p>
-                </li>
-                <li class="education-item">
-                    <h3>Class 10th - Secondary Education</h3>
-                    <p>Board of Secondary Education, Andhra Pradesh (2019)</p>
-                </li>
-            </ul>
-        </section>
-
-        <section id="skills" class="card">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li class="skill-item">C</li>
-                <li class="skill-item">C++</li>
-                <li class="skill-item">Python</li>
-                <li class="skill-item">Java</li>
-                <li class="skill-item">HTML</li>
-                <li class="skill-item">CSS</li>
-                <li class="skill-item">MYSQL</li>
-                <li class="skill-item">Verilog</li>
-                <li class="skill-item">VHDL</li>
-            </ul>
-
-            <h2>Platforms Known</h2>
-            <ul class="platforms-list">
-                <li class="platforms-item"><strong>Git</strong></li>
-                <li class="platforms-item"><strong>BitBucket</strong></li>
-                <li class="platforms-item"><strong>RTL2GDS</strong></li>
-                <li class="platforms-item"><strong>Cadence Virtuoso</strong></li>
-            </ul>
-
-        </section>
-
-        <section id="projects" class="card">
-            <h2>Projects</h2>
-            <ul class="project-list">
-                <li class="project-item">
-                    <strong>Library Management System</strong><br>
-                    A Library Management System (LMS) facilitates efficient management of library resources by enabling the addition, deletion, and updating of books and user records. It streamlines inventory management and
-                    user tracking to maintain accurate and up-to-date information.<br>
-                    <strong>Technologies:</strong>
-                    Django(Python),SQlite,HTML,CSS,Bootstrap.<br>
-                    <a href="https://github.com/Jayaramkandukuri/Library-Management-System" target="_blank">Link to Demo</a>
-                </li>
-                <li class="project-item">
-                    <strong>Password-Based Door Lock System</strong><br>
-                    A Password-Based Door Lock System developed using Proteus and Keil, which features a keypad for secure access with additional functionalities like "change password" and "forgot password".<br>
-                    <strong>Technologies:</strong>
-                    Proteus, Keil, DC Motors.<br>
-                    <a href="https://github.com/Jayaramkandukuri/password_based_door_lock_system" target="_blank">Link to Demo</a>
-                </li>
-                <li class="project-item">
-                    <strong>Employee Management System</strong><br>
-                    This system efficiently manages employee records, including details of work progress.<br>
-                    <strong>Technologies:</strong>
-                    Java, MySQL.<br>
-                    <a href="https://github.com/Jayaramkandukuri/Employee-Management-System" target="_blank">Link to Demo</a>
-                </li>
-                <li class="project-item">
-                    <strong>Electric Vehicle Charge Prediction</strong><br>
-                    A machine learning model for predicting charging times for electric vehicles.<br>
-                    <strong>Technologies:</strong>
-                    Python, Machine Learning Algorithms.<br>
-                    <a href="https://github.com/Jayaramkandukuri/Electric-Vehicle-Charging-Time-Prediction" target="_blank">Link to Demo</a>
-                </li>
-            </ul>
-        </section>
-
-        <section id="contact" class="card">
-            <h2>Contact</h2>
-            <p>If you would like to get in touch, feel free to drop me an email</p>
-            <div class="contact-links">
-                <a href="mailto:jayaramknss@gmail.com" class="contact-link">Jayaramknss@gmail.com</a>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2021 - 2025</span>
+                        <h3>B.Tech in Electronics and Communication</h3>
+                        <p>SRM University AP, India</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2019 - 2021</span>
+                        <h3>Class 12th - Intermediate</h3>
+                        <p>Board of Intermediate Education, Andhra Pradesh</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2019</span>
+                        <h3>Class 10th - Secondary Education</h3>
+                        <p>Board of Secondary Education, Andhra Pradesh</p>
+                    </div>
+                </div>
             </div>
         </section>
 
+        <section id="skills" class="card fade-in">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <i class="fas fa-code skill-icon"></i>
+                    <span class="skill-name">C</span>
+                    <span class="skill-percent">80%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="80"></div></div>
+                </div>
+                <div class="skill-box">
+                    <i class="fab fa-python skill-icon"></i>
+                    <span class="skill-name">Python</span>
+                    <span class="skill-percent">75%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="75"></div></div>
+                </div>
+                <div class="skill-box">
+                    <i class="fab fa-html5 skill-icon"></i>
+                    <span class="skill-name">HTML</span>
+                    <span class="skill-percent">85%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="85"></div></div>
+                </div>
+                <div class="skill-box">
+                    <i class="fab fa-css3-alt skill-icon"></i>
+                    <span class="skill-name">CSS</span>
+                    <span class="skill-percent">80%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="80"></div></div>
+                </div>
+                <div class="skill-box">
+                    <i class="fas fa-database skill-icon"></i>
+                    <span class="skill-name">SQL</span>
+                    <span class="skill-percent">70%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="70"></div></div>
+                </div>
+                <div class="skill-box">
+                    <i class="fas fa-microchip skill-icon"></i>
+                    <span class="skill-name">Verilog</span>
+                    <span class="skill-percent">65%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="65"></div></div>
+                </div>
+                <div class="skill-box">
+                    <i class="fas fa-wave-square skill-icon"></i>
+                    <span class="skill-name">VHDL</span>
+                    <span class="skill-percent">65%</span>
+                    <div class="skill-mini-bar"><div class="skill-mini-fill" data-width="65"></div></div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 40px;">Platforms Known</h2>
+            <div class="platforms-grid">
+                <div class="platform-box">
+                    <i class="fab fa-git-alt platform-icon"></i>
+                    <strong>Git</strong>
+                </div>
+                <div class="platform-box">
+                    <i class="fab fa-bitbucket platform-icon"></i>
+                    <strong>BitBucket</strong>
+                </div>
+                <div class="platform-box">
+                    <i class="fas fa-microchip platform-icon"></i>
+                    <strong>RTL2GDS</strong>
+                </div>
+                <div class="platform-box">
+                    <i class="fas fa-drafting-compass platform-icon"></i>
+                    <strong>Cadence Virtuoso</strong>
+                </div>
+            </div>
+        </section>
+
+        <section id="Certificates" class="card fade-in">
+            <h2>Certifications</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <strong>Understanding APIs and RESTful APIs Crash Course</strong><br>
+                    Learned REST architecture, HTTP methods and API communication.
+                </li>
+                <li class="project-item">
+                    <strong>SQL Bootcamp: Learn SQL Fast, Query Like a PRO</strong><br>
+                    Practiced SQL queries, joins, filtering, and database operations.
+                </li>
+                <li class="project-item">
+                    <strong>Introduction to Version Control with Git and GitHub</strong><br>
+                    Learned commits, branching, merging, and repository collaboration.
+                </li>
+            </ul>
+        </section>
+
+        <section id="projects" class="card fade-in">
+            <h2>Projects</h2>
+            <div class="project-cards-grid">
+                <div class="project-card-new">
+                    <div class="project-card-banner">📚</div>
+                    <div class="project-card-body">
+                        <h3>Library Management System</h3>
+                        <p>Facilitates efficient management of library resources — adding, deleting, and updating books and user records with accurate inventory tracking.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SQLite</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <a href="https://github.com/Jayaramkandukuri/Library-Management-System" target="_blank" class="project-card-link">View on GitHub →</a>
+                    </div>
+                </div>
+                <div class="project-card-new">
+                    <div class="project-card-banner">🔐</div>
+                    <div class="project-card-body">
+                        <h3>Password-Based Door Lock</h3>
+                        <p>Door lock system via keypad with DC motors as doors and buzzer alerts. Includes change password and forgot password features.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Proteus</span>
+                            <span class="tech-tag">Keil</span>
+                            <span class="tech-tag">DC Motors</span>
+                        </div>
+                        <a href="https://github.com/Jayaramkandukuri/password_based_door_lock_system" target="_blank" class="project-card-link">View on GitHub →</a>
+                    </div>
+                </div>
+                <div class="project-card-new">
+                    <div class="project-card-banner">👥</div>
+                    <div class="project-card-body">
+                        <h3>Employee Management System</h3>
+                        <p>Add, delete, search and edit employee details. Employees can log work progress viewable by the owner via secure login.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <a href="https://github.com/Jayaramkandukuri/Employee-Management-System" target="_blank" class="project-card-link">View on GitHub →</a>
+                    </div>
+                </div>
+                <div class="project-card-new">
+                    <div class="project-card-banner">⚡</div>
+                    <div class="project-card-body">
+                        <h3>EV Charge Prediction</h3>
+                        <p>Machine learning model to predict EV charging times using various algorithms with thorough performance evaluations.</p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">ML Algorithms</span>
+                        </div>
+                        <a href="https://github.com/Jayaramkandukuri/Electric-Vehicle-Charging-Time-Prediction" target="_blank" class="project-card-link">View on GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="card fade-in">
+            <h2>Contact</h2>
+            <p>If you would like to get in touch, feel free to reach out!</p>
+            <div class="contact-links">
+                <a href="mailto:jayaramknss@gmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> Jayaramknss@gmail.com
+                </a>
+            </div>
+            <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                <input type="text" placeholder="Your Name" required />
+                <input type="email" placeholder="Your Email" required />
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+            </form>
+        </section>
     </div>
+
+    <div id="bottom"></div>
 
     <footer>
         <div class="footer-content">
@@ -138,5 +264,189 @@
         </div>
     </footer>
 
+    <div class="scroll-buttons">
+        <button id="scroll-up" title="Previous Section">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button id="scroll-down" title="Next Section">
+            <i class="fas fa-arrow-down"></i>
+        </button>
+    </div>
+
+    <script>
+
+        // ── Section Progress Indicator ──
+        const sectionLabels = [
+            { id: 'about', label: 'About' },
+            { id: 'education', label: 'Education' },
+            { id: 'skills', label: 'Skills' },
+            { id: 'Certificates', label: 'Certifications' },
+            { id: 'projects', label: 'Projects' },
+            { id: 'contact', label: 'Contact' }
+        ];
+
+        const indicatorContainer = document.createElement('div');
+        indicatorContainer.classList.add('section-indicator');
+        sectionLabels.forEach(({ id, label }) => {
+            const dot = document.createElement('div');
+            dot.classList.add('indicator-dot');
+            dot.setAttribute('data-label', label);
+            dot.setAttribute('data-target', id);
+            dot.addEventListener('click', () => {
+                document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            });
+            indicatorContainer.appendChild(dot);
+        });
+        document.body.appendChild(indicatorContainer);
+
+        // ── Typing animation ──
+        const words = ['Jayaram Kandukuri', 'Backend Developer'];
+        let wordIndex = 0, charIndex = 0, deleting = false;
+        const typingEl = document.getElementById('typing-hero');
+
+        function type() {
+            const word = words[wordIndex];
+            if (!deleting) {
+                typingEl.textContent = word.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === word.length) {
+                    deleting = true;
+                    setTimeout(type, 2500);
+                    return;
+                }
+            } else {
+                typingEl.textContent = word.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    deleting = false;
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
+            setTimeout(type, deleting ? 80 : 130);
+        }
+        type();
+
+        // ── Scroll fade-in ──
+        const faders = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+        faders.forEach(el => observer.observe(el));
+
+        // ── Active nav + indicator highlight on scroll ──
+        const sectionEls = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sectionEls.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            document.querySelectorAll('.indicator-dot').forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('data-target') === current) dot.classList.add('active');
+            });
+        });
+
+        // ── Skill progress bars ──
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.skill-mini-fill').forEach(bar => {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) skillObserver.observe(skillsSection);
+
+        // ── Animated Counters ──
+        function animateCounter(el, target, duration) {
+            let start = 0;
+            const step = Math.ceil(target / (duration / 30));
+            const timer = setInterval(() => {
+                start += step;
+                if (start >= target) { start = target; clearInterval(timer); }
+                el.textContent = start + '+';
+            }, 30);
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.counter-number').forEach(el => {
+                        animateCounter(el, parseInt(el.dataset.target), 1000);
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        const countersGrid = document.querySelector('.counters-grid');
+        if (countersGrid) counterObserver.observe(countersGrid);
+
+        // ── Contact Form ──
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = '✅ Message Sent!';
+            btn.style.background = '#27ae60';
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                btn.style.background = '#f39c12';
+                e.target.reset();
+            }, 3000);
+        }
+
+        // ── Home Button ──
+        document.getElementById('home-btn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ── Dark / Light mode toggle ──
+        const toggleBtn = document.getElementById('theme-toggle');
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            toggleBtn.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+        });
+
+        // ── Scroll navigation ──
+        const sections = ['about', 'education', 'skills', 'Certificates', 'projects', 'contact'];
+
+        function getCurrentSectionIndex() {
+            let closest = 0;
+            let minDistance = Infinity;
+            sections.forEach((id, i) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const distance = el.getBoundingClientRect().top;
+                    if (distance >= -100 && distance < minDistance) {
+                        minDistance = distance;
+                        closest = i;
+                    }
+                }
+            });
+            return closest;
+        }
+
+        document.getElementById('scroll-up').addEventListener('click', () => {
+            const i = getCurrentSectionIndex();
+            document.getElementById(sections[Math.max(0, i - 1)]).scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('scroll-down').addEventListener('click', () => {
+            const i = getCurrentSectionIndex();
+            const aboutEl = document.getElementById('about');
+            if (i === 0 && aboutEl.getBoundingClientRect().top > 50) {
+                aboutEl.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById(sections[Math.min(sections.length - 1, i + 1)]).scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
 </body>
 </html>

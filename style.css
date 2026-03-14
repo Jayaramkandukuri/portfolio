@@ -20,10 +20,10 @@ header {
     justify-content: center;
     align-items: flex-start;
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
                 url("photos/Jayaram_Photo.png") no-repeat center center/cover;
     padding-left: 20px;
-    filter: brightness(1.2); /* Increase brightness */
+    filter: brightness(1.2);
 }
 
 header h1 {
@@ -75,7 +75,7 @@ header .social-links a:hover {
     text-decoration: none;
 }
 
-nav {
+/* nav {
     position: fixed;
     top: 0;
     left: 50%;
@@ -101,14 +101,18 @@ nav a:hover {
     color: #f39c12;
 }
 
-/* Add margin to the first section to avoid being hidden behind the navbar */
+nav a.active {
+    color: #f39c12;
+    border-bottom: 2px solid #f39c12;
+    padding-bottom: 3px;
+} */
+
 .section-container {
     padding: 50px 10%;
     background-color: #333;
-    margin-top: 40px; /* Adjusted to offset the fixed navbar height */
+    margin-top: 40px;
 }
 
-/* Ensure sections are not hidden behind one another */
 section {
     margin-top: 20px;
 }
@@ -116,11 +120,11 @@ section {
 .card {
     background-color: #444;
     padding: 30px;
-    margin-bottom: 10%; /* 5% space between cards */
+    margin-bottom: 10%;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    overflow: hidden; /* Prevents text overflow */
-    word-wrap: break-word; /* Ensures text inside card breaks properly */
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .card h2 {
@@ -137,7 +141,7 @@ section {
 .card li {
     font-size: 1.2em;
     line-height: 1.6;
-    word-wrap: break-word; /* Prevents text overflow */
+    word-wrap: break-word;
 }
 
 .project-list, .education-list, .skills-list, .platforms-list {
@@ -147,7 +151,7 @@ section {
 
 .project-list li, .education-list li, .skills-list li, .platforms-list li {
     margin-bottom: 20px;
-    word-wrap: break-word; /* Ensures text wraps inside list items */
+    word-wrap: break-word;
 }
 
 .project-list a, .about-link {
@@ -165,7 +169,13 @@ section {
     background: #555;
     border-radius: 8px;
     margin-bottom: 15px;
-    word-wrap: break-word; /* Ensures text breaks inside items */
+    word-wrap: break-word;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .skills-list, .platforms-list {
@@ -173,7 +183,7 @@ section {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    word-wrap: break-word; /* Ensures text wraps inside the container */
+    word-wrap: break-word;
 }
 
 .skills-list .skill-item, .platforms-list .platforms-item {
@@ -182,36 +192,34 @@ section {
     background: #555;
     padding: 20px;
     border-radius: 8px;
-    word-wrap: break-word; /* Ensures text wraps inside each item */
+    word-wrap: break-word;
 }
 
 #contact {
-    background-color: #444;  /* Matching background color of other cards */
+    background-color: #444;
     color: #fff;
-    padding: 50px 10%; /* Consistent padding for the card */
+    padding: 50px 10%;
     text-align: center;
     border-radius: 8px;
-    border-top: 2px solid #f39c12; /* Border for consistency */
+    border-top: 2px solid #f39c12;
     border-bottom: 2px solid #f39c12;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Matching shadow */
-    width: 80%; /* Ensure it matches other sections' width */
-    max-width: 1200px; /* Limit the max width for larger screens */
-    margin: 40px auto; /* Center the section on the page */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 1200px;
+    margin: 40px auto;
 }
 
-/* Ensure the main section container is consistent with padding */
 .section-container {
     padding: 50px 10%;
     background-color: #333;
-    margin-top: 40px; /* Offset for navbar */
+    margin-top: 40px;
 }
 
-/* For the contact links to match the rest of the design */
 .contact-links {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 30px; /* Add spacing between contact text and links */
+    margin-top: 30px;
 }
 
 .contact-link {
@@ -257,6 +265,638 @@ footer .rights {
     margin-left: 20px;
 }
 
+/* ── Typing animation ── */
+.typing-text::after {
+    content: '|';
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* ── Fade-in on scroll ── */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Skill progress bars ── */
+.skill-bar-container {
+    margin-top: 20px;
+}
+
+.skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 1em;
+}
+
+.skill-bar {
+    background: #555;
+    border-radius: 8px;
+    height: 12px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #f39c12;
+    border-radius: 8px;
+    transition: width 1.2s ease;
+}
+
+/* ── Home Button ── */
+.home-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    background: #444;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.home-btn:hover {
+    background: #f39c12;
+    color: #222;
+}
+
+/* ── Dark / Light mode toggle ── */
+.theme-toggle {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 1100;
+    background: #444;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.theme-toggle:hover {
+    background: #f39c12;
+    color: #222;
+}
+
+/* ── Light mode ── */
+body.light-mode {
+    background-color: #f0f0f0;
+}
+
+body.light-mode .section-container {
+    background-color: #e0e0e0;
+}
+
+body.light-mode nav {
+    background-color: rgba(50, 50, 50, 0.95);
+}
+
+body.light-mode nav a {
+    color: #fff;
+}
+
+body.light-mode nav a:hover {
+    color: #f39c12;
+}
+
+body.light-mode nav a.active {
+    color: #f39c12;
+    border-bottom: 2px solid #f39c12;
+}
+
+body.light-mode #contact {
+    background-color: #444;
+    color: #fff;
+}
+
+.skill-icon {
+    font-size: 2em;
+    color: #f39c12;
+    margin-bottom: 4px;
+}
+
+/* body.light-mode .card,
+body.light-mode .project-item,
+body.light-mode .education-item,
+body.light-mode .skill-item,
+body.light-mode .platforms-item {
+    background-color: #fff;
+    color: #222;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+} */
+
+body.light-mode .section-container {
+    background-color: #e8e8e8;
+}
+
+body.light-mode .skill-bar {
+    background: #ccc;
+}
+
+body.light-mode footer {
+    background: #222;
+}
+
+body.light-mode .scroll-buttons button,
+body.light-mode .theme-toggle {
+    background: #ccc;
+    color: #222;
+}
+
+body.light-mode #contact {
+    background-color: #444;
+    color: #fff;
+}
+
+/* ── Scroll buttons ── */
+.scroll-buttons {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+.scroll-buttons button {
+    width: 45px;
+    height: 45px;
+    background: #444;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.scroll-buttons button:hover {
+    background: #f39c12;
+    color: #222;
+}
+
+/* ── Skills Grid with 3D boxes ── */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.skill-box {
+    width: 150px;
+    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
+    border-radius: 12px;
+    padding: 20px 15px 15px;
+    text-align: center;
+    box-shadow:
+        4px 4px 10px rgba(0, 0, 0, 0.5),
+        -2px -2px 6px rgba(255, 255, 255, 0.05);
+    transform: perspective(600px) rotateX(5deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.skill-box:hover {
+    transform: perspective(600px) rotateX(0deg) translateY(-6px);
+    box-shadow:
+        6px 12px 20px rgba(0, 0, 0, 0.6),
+        -2px -2px 8px rgba(255, 255, 255, 0.08);
+}
+
+.skill-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.skill-percent {
+    font-size: 0.85em;
+    color: #f39c12;
+}
+
+.skill-mini-bar {
+    width: 100%;
+    height: 6px;
+    background: #666;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.skill-mini-fill {
+    height: 100%;
+    width: 0%;
+    background: #f39c12;
+    border-radius: 4px;
+    transition: width 1.2s ease;
+}
+
+/* ── Platforms Grid with 3D boxes ── */
+.platforms-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.platform-box {
+    width: 160px;
+    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
+    border-radius: 12px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow:
+        4px 4px 10px rgba(0, 0, 0, 0.5),
+        -2px -2px 6px rgba(255, 255, 255, 0.05);
+    transform: perspective(600px) rotateX(5deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+}
+
+.platform-box:hover {
+    transform: perspective(600px) rotateX(0deg) translateY(-6px);
+    box-shadow:
+        6px 12px 20px rgba(0, 0, 0, 0.6),
+        -2px -2px 8px rgba(255, 255, 255, 0.08);
+}
+
+.platform-icon {
+    font-size: 2em;
+    color: #f39c12;
+}
+
+
+/* ── Custom Cursor ──
+*, *::before, *::after {
+    cursor: none !important;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #f39c12;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+}
+
+.cursor-ring {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #f39c12;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: all 0.12s ease;
+    opacity: 0.7;
+} */
+
+/* ── Section Progress Indicator ── */
+.section-indicator {
+    position: fixed;
+    right: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 998;
+}
+
+.indicator-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #666;
+    border: 2px solid #888;
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.indicator-dot:hover::after,
+.indicator-dot.active::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f39c12;
+    color: #222;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    white-space: nowrap;
+    font-family: 'Roboto', sans-serif;
+}
+
+.indicator-dot.active {
+    background: #f39c12;
+    border-color: #f39c12;
+    transform: scale(1.3);
+}
+
+/* ── Animated Counters ── */
+.counters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 40px 0 10px;
+}
+
+.counter-box {
+    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
+    border-radius: 12px;
+    padding: 25px 35px;
+    text-align: center;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5), -2px -2px 6px rgba(255,255,255,0.05);
+    transform: perspective(600px) rotateX(5deg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 130px;
+}
+
+.counter-box:hover {
+    transform: perspective(600px) rotateX(0deg) translateY(-6px);
+    box-shadow: 6px 12px 20px rgba(0,0,0,0.6);
+}
+
+.counter-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #f39c12;
+    display: block;
+}
+
+.counter-label {
+    font-size: 0.9em;
+    color: #ccc;
+    margin-top: 5px;
+    display: block;
+}
+
+/* ── Education Timeline ── */
+.timeline {
+    position: relative;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #f39c12;
+    border-radius: 3px;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 0 0 35px 60px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #f39c12;
+    border: 3px solid #333;
+    box-shadow: 0 0 0 3px #f39c12;
+    z-index: 1;
+}
+
+.timeline-content {
+    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateX(6px);
+    box-shadow: 6px 10px 20px rgba(0,0,0,0.5);
+}
+
+.timeline-content h3 {
+    margin: 0 0 6px;
+    color: #f39c12;
+    font-size: 1.1em;
+}
+
+.timeline-content p {
+    margin: 0;
+    color: #ccc;
+    font-size: 0.95em !important;
+}
+
+.timeline-year {
+    display: inline-block;
+    background: #f39c12;
+    color: #222;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+
+/* ── Project Cards ── */
+.project-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.project-card-new {
+    background: linear-gradient(145deg, #5a5a5a, #3a3a3a);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-new:hover {
+    transform: translateY(-8px);
+    box-shadow: 6px 16px 28px rgba(0,0,0,0.6);
+}
+
+.project-card-banner {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5em;
+    background: linear-gradient(135deg, #3a3a3a, #222);
+    border-bottom: 2px solid #f39c12;
+}
+
+.project-card-body {
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-card-body h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #f39c12;
+}
+
+.project-card-body p {
+    margin: 0;
+    font-size: 0.9em !important;
+    color: #ccc;
+    line-height: 1.5;
+    flex: 1;
+}
+
+.project-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.tech-tag {
+    background: #444;
+    color: #f39c12;
+    font-size: 0.75em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid #f39c12;
+}
+
+.project-card-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #f39c12;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.project-card-link:hover {
+    color: #fff;
+}
+
+/* ── Contact Form ── */
+.contact-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: #555;
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #fff;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    transition: border 0.3s ease;
+    resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #f39c12;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #aaa;
+}
+
+.contact-form button {
+    background: #f39c12;
+    color: #222;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer !important;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.contact-form button:hover {
+    background: #e08e0b;
+    transform: scale(1.02);
+}
+
+
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2.5em;
@@ -274,89 +914,83 @@ footer .rights {
         width: 100%;
     }
 
-    /* Mobile Header adjustments */
     header {
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Center the content vertically */
-        align-items: center;     /* Center the content horizontally */
-        text-align: center;      /* Ensure text is centered */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         padding: 20px 10%;
     }
 
     header h1 {
-        font-size: 3.5em;  /* Adjust font size for mobile */
-        text-align: center; /* Ensure header title text is centered */
+        font-size: 3.5em;
+        text-align: center;
     }
 
     header h2 {
-        font-size: 2.5em;  /* Adjust font size for mobile */
-        text-align: center; /* Ensure header subtitle text is centered */
+        font-size: 2.5em;
+        text-align: center;
     }
 
     .card {
-        margin: 0 auto;          /* Horizontally center the card */
-        padding: 20px;           /* Adjust padding inside the card */
-        max-width: 90%;          /* Limit card width */
-        box-sizing: border-box;  /* Ensure padding does not affect width */
-        background-color: #444;  /* Ensure the card color is set */
-        border-radius: 8px;      /* Round corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Card shadow */
+        margin: 0 auto;
+        padding: 20px;
+        max-width: 90%;
+        box-sizing: border-box;
+        background-color: #444;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     }
 
-    /* Center the social links and contact info on mobile */
     header .social-links {
-        justify-content: center;  /* Center social links horizontally */
+        justify-content: center;
         margin-top: 20px;
     }
 
     header .contact-info {
-        text-align: center; /* Center the contact info */
+        text-align: center;
     }
-    
-    /* Mobile Navigation Bar adjustments */
+
     nav {
-        position: fixed;         /* Fixed positioning at the top */
-        top: 0;                  /* Align it at the top */
-        left: 50%;               /* Move it to the center */
-        transform: translateX(-50%); /* Adjust positioning to perfectly center */
-        display: flex;           /* Flexbox for horizontal layout */
-        justify-content: center; /* Center the items horizontally */
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
         gap: 20px;
         background-color: rgba(0, 0, 0, 0.8);
         padding: 10px 0;
-        z-index: 1000;           /* Ensure it stays above other elements */
-        width: auto;             /* Allow the width to auto-adjust to content */
-
+        z-index: 1000;
+        width: auto;
     }
 
     nav a {
         font-size: 1em;
     }
 
-    /* Mobile Card and Content adjustments */
     .card {
         padding: 20px;
-        margin-bottom: 20px; /* Ensure cards don't overlap */
+        margin-bottom: 20px;
     }
 
     .card p, .card li {
-        font-size: 1.1em; /* Slightly smaller font for mobile */
-        line-height: 1.4; /* Adjust line height for better readability */
-        word-wrap: break-word; /* Prevents text overflow */
+        font-size: 1.1em;
+        line-height: 1.4;
+        word-wrap: break-word;
     }
 
     .skills-list .skill-item, .platforms-list .platforms-item {
-        width: 100%;  /* Make skills and platforms items full-width on mobile */
+        width: 100%;
         text-align: center;
         padding: 15px;
     }
 
-    /* Project Cards Mobile Adjustments */
     .project-card {
         width: 90%;
-        max-width: 500px;  /* Ensuring cards don't stretch too wide */
-        margin: 20px auto; /* Center the card on mobile */
+        max-width: 500px;
+        margin: 20px auto;
         padding: 20px;
         box-sizing: border-box;
         background-color: #444;
@@ -365,94 +999,120 @@ footer .rights {
     }
 
     #contact {
-        width: 90%;                /* Set the width of the contact card */
-        max-width: 100%;            /* Limit the max width */
-        padding: 20px;             /* Adjust padding inside the card */
-        margin: 20px auto;         /* Horizontally center the contact card */
-        background-color: #444;    /* Background color */
-        border-radius: 8px;        /* Rounded corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Add shadow */
-        border-top: 2px solid #f39c12; /* Add top border */
-        border-bottom: 2px solid #f39c12; /* Add bottom border */
-        box-sizing: border-box;    /* Ensure padding doesn't affect width */
+        width: 90%;
+        max-width: 100%;
+        padding: 20px;
+        margin: 20px auto;
+        background-color: #444;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        border-top: 2px solid #f39c12;
+        border-bottom: 2px solid #f39c12;
+        box-sizing: border-box;
     }
 
     .card h2 {
-        font-size: 2.5em;  /* Adjust card title size for mobile */
+        font-size: 2.5em;
         margin-bottom: 15px;
     }
 
     .contact-info, .contact-links {
-        text-align: center; /* Center align text in contact info */
+        text-align: center;
     }
 
     .contact-link {
-        font-size: 1.3em; /* Adjust size of contact links */
+        font-size: 1.3em;
         padding: 12px 25px;
-        background-color: #444;  /* Set background color for contact links */
-        border-radius: 5px;      /* Rounded corners for links */
-        transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+        background-color: #444;
+        border-radius: 5px;
+        transition: background-color 0.3s, transform 0.3s;
     }
 
-    /* Hover effect for contact links */
     .contact-link:hover {
-        background-color: #f39c12; /* Change background on hover */
-        color: #222;                /* Darken text color on hover */
-        transform: scale(1.05);      /* Slightly enlarge on hover */
+        background-color: #f39c12;
+        color: #222;
+        transform: scale(1.05);
     }
 
     .contact-info p {
-        font-size: 1.1em;  /* Adjust font size for contact details */
+        font-size: 1.1em;
     }
 
     footer p {
-        font-size: 1em;  /* Adjust font size for footer */
+        font-size: 1em;
     }
 
     footer .rights {
-        font-size: 0.9em;  /* Adjust rights font size */
+        font-size: 0.9em;
     }
 
-    /* Ensuring proper spacing and alignment for items */
     .project-item, .education-item, .skill-item, .platforms-item {
         padding: 15px;
         margin-bottom: 10px;
-        word-wrap: break-word; /* Prevent overflow */
+        word-wrap: break-word;
     }
 
     .section-container {
-        padding: 30px 10%; /* Adjust padding for mobile */
+        padding: 30px 10%;
     }
 
     .name {
-        font-size: 9px;  /* Adjust name font size for smaller screens */
+        font-size: 9px;
         margin-left: 0;
     }
 
-    /* Mobile-specific hover adjustments */
     .contact-link:hover,
     .project-list a:hover,
     .about-link:hover {
-        background-color: #f39c12;  /* Slightly change background on hover */
-        color: #222;                /* Darken text color */
-        transform: scale(1.05);      /* Slightly enlarge the element on hover */
+        background-color: #f39c12;
+        color: #222;
+        transform: scale(1.05);
     }
 
-    /* Contact card hover effect */
     #contact:hover {
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);  /* Increase shadow on hover */
-        transform: translateY(-5px);  /* Slight upward movement */
-    }
-    
-    /* For social links in header */
-    header .social-links a:hover {
-        color: #f39c12; /* Change color on hover */
-        transform: scale(1.1); /* Slightly enlarge the icon on hover */
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+        transform: translateY(-5px);
     }
 
-    /* Ensure that header links are appropriately sized and have a subtle hover effect */
+    header .social-links a:hover {
+        color: #f39c12;
+        transform: scale(1.1);
+    }
+
     nav a:hover {
         color: #f39c12;
-        transform: scale(1.05);  /* Subtle scaling effect */
+        transform: scale(1.05);
+    }
+
+    .theme-toggle {
+        top: 60px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
+    }
+    .section-indicator {
+        display: none;
+    }
+
+    /* .cursor-dot, .cursor-ring {
+        display: none;
+    }
+
+    *, *::before, *::after {
+        cursor: auto !important;
+    } */
+
+    .project-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .counters-grid {
+        gap: 12px;
+    }
+
+    .counter-box {
+        min-width: 100px;
+        padding: 18px 20px;
     }
 }
