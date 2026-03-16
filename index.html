@@ -13,7 +13,8 @@
     <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">🌙</button>
 
     <header>
-        <div class="card" style="position: absolute; right: 90px; top: 50%; transform: translateY(-50%);">
+        <!-- <div class="card" style="position: absolute; right: 90px; top: 50%; transform: translateY(-50%);"> -->
+        <div class="card hero-card">
             <h1 class="typing-text" id="typing-hero">Jayaram Kandukuri</h1>
             <h2>Electronics and Communication</h2>
             <div class="social-links">
@@ -309,21 +310,7 @@
         </div>
     </footer>
 
-    <div class="scroll-buttons">
-        <button id="scroll-up" title="Previous Section">
-            <i class="fas fa-chevron-up"></i>
-        </button>
-        <button id="scroll-down" title="Next Section">
-            <i class="fas fa-chevron-down"></i>
-        </button>
-    </div>
 
-    <!-- ═══════════════════════════════════════════
-         PROJECT DETAIL DATA — Edit this object to
-         update the content inside each project modal.
-         Keys: title, emoji, overview, Features (array),
-               techStack (array), github, liveDemo (optional)
-    ════════════════════════════════════════════════ -->
     <script>
     const projectData = {
 
@@ -761,53 +748,6 @@
             toggleBtn.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
         });
 
-        // ── Scroll navigation ──
-        const sections = ['about', 'education', 'skills', 'Certificates', 'projects', 'contact'];
-
-        function getCurrentSectionIndex() {
-            const mid = window.innerHeight * 0.4;
-            let bestIndex = 0;
-            sections.forEach((id, i) => {
-                const el = document.getElementById(id);
-                if (!el) return;
-                const top = el.getBoundingClientRect().top;
-                if (top <= mid) bestIndex = i;
-            });
-            return bestIndex;
-        }
-
-        function scrollToSection(index) {
-            if (isFading) return;
-            const clamped = Math.max(0, Math.min(sections.length - 1, index));
-            const target = document.getElementById(sections[clamped]);
-            if (!target) return;
-
-            const upBtn = document.getElementById('scroll-up');
-            const downBtn = document.getElementById('scroll-down');
-            upBtn.disabled = true;
-            downBtn.disabled = true;
-
-            target.scrollIntoView({ behavior: 'smooth' });
-
-            setTimeout(() => {
-                upBtn.disabled = false;
-                downBtn.disabled = false;
-            }, 800);
-        }
-
-        document.getElementById('scroll-up').addEventListener('click', () => {
-            scrollToSection(getCurrentSectionIndex() - 1);
-        });
-
-        document.getElementById('scroll-down').addEventListener('click', () => {
-            const aboutTop = document.getElementById('about').getBoundingClientRect().top;
-            if (aboutTop > 10) {
-                scrollToSection(0);
-            } else {
-                scrollToSection(getCurrentSectionIndex() + 1);
-            }
-        });
-
         // ── Contact Form ──
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -861,5 +801,6 @@
         }
 
     </script>
+    <script src="mobile.js"></script>
 </body>
 </html>
