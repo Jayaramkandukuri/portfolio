@@ -1293,7 +1293,7 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
         height: 100svh; min-height: 100svh;
         display: flex; flex-direction: column;
         justify-content: flex-end; align-items: stretch;
-        padding: 0 0 calc(var(--m-nav-h) + 16px) 0;
+        padding: 0 0 calc(var(--m-nav-h) + 32px) 0;
         position: relative; overflow: hidden;
         background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
                     url("photos/Jayaram_Photo.png") no-repeat 30% center / cover;
@@ -1315,16 +1315,14 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
         backdrop-filter: blur(28px) !important;
         -webkit-backdrop-filter: blur(28px) !important;
         border: 1px solid rgba(255,255,255,0.13) !important;
-        border-bottom: none !important;
-        border-radius: 24px 24px 0 0 !important;
+        border-radius: 24px !important;
         box-shadow: 0 -8px 40px rgba(0,0,0,0.5) !important;
         padding: 24px 22px 20px !important;
-        margin: 0 12px !important;
+        margin: 0 12px 16px !important;
         width: calc(100% - 24px) !important;
         max-width: calc(100% - 24px) !important;
         box-sizing: border-box !important;
         z-index: 2;
-        margin-bottom: 0 !important;
         animation: heroCardIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
     }
 
@@ -1396,6 +1394,7 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
         box-shadow: 0 0 0 0 var(--m-gold-glow);
         animation: pulse 2s ease-in-out 1.5s infinite;
         z-index: 3;
+        display: none;
     }
 
     @keyframes pulse {
@@ -1771,4 +1770,41 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
     body.light-mode #app-shell,
     body.light-mode .app-slide { background: #f0f0f0 !important; }
     body.light-mode .app-slide h2 { color: #111; }
+
+    body.light-mode #project-modal-inner {
+        background: #ffffff !important;
+        border: 1px solid rgba(0,0,0,0.12) !important;
+    }
+
+    body.light-mode #proj-modal-header {
+        border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+    }
+
+    body.light-mode #proj-modal-title,
+    body.light-mode #proj-modal-header h2 {
+        color: #111 !important;
+    }
+
+    body.light-mode #proj-modal-overview,
+    body.light-mode #proj-modal-steps li {
+        color: #444 !important;
+    }
+
+    body.light-mode .proj-section-label {
+        color: #c47f00 !important;
+        border-bottom-color: rgba(196,127,0,0.25) !important;
+    }
+
+    body.light-mode #proj-modal-tech > div {
+        background: rgba(196,127,0,0.1) !important;
+        border-color: rgba(196,127,0,0.3) !important;
+    }
+
+    body.light-mode #proj-modal-tech > div div[style*="font-size:0.85em"] {
+        color: #111 !important;
+    }
+
+    body.light-mode #proj-modal-tech > div div[style*="font-size:0.72em"] {
+        color: #666 !important;
+    }
 }

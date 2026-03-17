@@ -68,8 +68,6 @@
     heroSlide.className = 'app-slide app-slide-hero';
     heroSlide.style.cssText = slideBase + `width:${slideWidth}; padding:0; overflow:hidden;`;
 
-    // Move the actual header element INTO the hero slide
-    // This preserves all CSS rules including background-image
     heroSlide.appendChild(header);
     header.style.cssText = `
         height: 100%; min-height: 100%; width: 100%;
@@ -90,9 +88,77 @@
         slide.className = 'app-slide';
         slide.style.cssText = slideBase + `width:${slideWidth}; padding:28px 18px 24px;`;
         const clone = section.cloneNode(true);
-        clone.style.cssText = 'min-height:100%; margin:0; border-radius:0; box-shadow:none; padding:0; background:transparent;';
+        clone.style.cssText = 'min-height:100%; margin:0; border-radius:0; box-shadow:none; padding:0 2px;';
         clone.classList.remove('fade-in');
         clone.classList.add('visible');
+
+        // ── Skills: fix 3-col grid overflow ──────────────────
+        if (section.id === 'skills') {
+            const sg = clone.querySelector('.skills-grid');
+            if (sg) {
+                sg.style.setProperty('display',               'grid',        'important');
+                sg.style.setProperty('grid-template-columns', 'repeat(3,1fr)', 'important');
+                sg.style.setProperty('gap',                   '12px',        'important');
+                sg.style.setProperty('width',                 '100%',        'important');
+                sg.style.setProperty('box-sizing',            'border-box',  'important');
+                sg.style.setProperty('overflow',              'hidden',      'important');
+            }
+            const pg = clone.querySelector('.platforms-grid');
+            if (pg) {
+                pg.style.setProperty('display',               'grid',        'important');
+                pg.style.setProperty('grid-template-columns', 'repeat(3,1fr)', 'important');
+                pg.style.setProperty('gap',                   '12px',        'important');
+                pg.style.setProperty('width',                 '100%',        'important');
+                pg.style.setProperty('box-sizing',            'border-box',  'important');
+                pg.style.setProperty('overflow',              'hidden',      'important');
+            }
+            clone.querySelectorAll('.skill-box, .platform-box').forEach(b => {
+                b.style.setProperty('width',      '100%',       'important');
+                b.style.setProperty('min-width',  '0',          'important');
+                b.style.setProperty('box-sizing', 'border-box', 'important');
+            });
+        }
+
+        // ── Education: fix timeline card spacing ──────────────
+        if (section.id === 'education') {
+            const timeline = clone.querySelector('.timeline');
+            if (timeline) {
+                timeline.style.setProperty('width',      '100%',       'important');
+                timeline.style.setProperty('box-sizing', 'border-box', 'important');
+                timeline.style.setProperty('overflow',   'hidden',     'important');
+            }
+            clone.querySelectorAll('.timeline-item').forEach(item => {
+                item.style.setProperty('padding-bottom', '16px',       'important');
+                item.style.setProperty('box-sizing',     'border-box', 'important');
+                item.style.setProperty('width',          '100%',       'important');
+                item.style.setProperty('overflow',       'hidden',     'important');
+            });
+            clone.querySelectorAll('.timeline-content').forEach(card => {
+                card.style.setProperty('margin-bottom', '0',          'important');
+                card.style.setProperty('border-radius', '12px',       'important');
+                card.style.setProperty('width',         '100%',       'important');
+                card.style.setProperty('box-sizing',    'border-box', 'important');
+                card.style.setProperty('overflow',      'hidden',     'important');
+            });
+        }
+
+        // ── Certificates: fix cert card spacing ───────────────
+        if (section.id === 'Certificates') {
+            const grid = clone.querySelector('.cert-grid');
+            if (grid) {
+                grid.style.setProperty('gap',     '14px',       'important');
+                grid.style.setProperty('padding', '2px 4px',    'important');
+                grid.style.setProperty('width',   '100%',       'important');
+                grid.style.setProperty('box-sizing', 'border-box', 'important');
+            }
+            clone.querySelectorAll('.cert-card').forEach(card => {
+                card.style.setProperty('margin',        '0',          'important');
+                card.style.setProperty('border-radius', '12px',       'important');
+                card.style.setProperty('box-sizing',    'border-box', 'important');
+                card.style.setProperty('width',         '100%',       'important');
+            });
+        }
+
         slide.appendChild(clone);
         slidesWrapper.appendChild(slide);
     });
@@ -132,8 +198,8 @@
 
     // Move theme toggle to make room
     if (themeToggle) {
-        themeToggle.style.top   = '14px';
-        themeToggle.style.right = '14px';
+        themeToggle.style.top    = '14px';
+        themeToggle.style.right  = '14px';
         themeToggle.style.zIndex = '1200';
     }
 
@@ -194,7 +260,7 @@
         updateNav();
 
         // Show/hide home button
-        homeBtn.style.opacity      = index === 0 ? '0' : '1';
+        homeBtn.style.opacity       = index === 0 ? '0' : '1';
         homeBtn.style.pointerEvents = index === 0 ? 'none' : 'auto';
 
         setTimeout(() => { isAnimating = false; }, 420);
@@ -218,36 +284,68 @@
 
     // ── 9. Swipe gestures ─────────────────────────────────────
     let touchStartX = 0, touchStartY = 0, touchDeltaX = 0, isSwiping = false;
+    let touchStartTarget = null, isHorizontalLocked = false, isVerticalLocked = false;
 
     appShell.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
-        touchDeltaX = 0; isSwiping = false;
+        touchDeltaX = 0;
+        isSwiping = false;
+        isHorizontalLocked = false;
+        isVerticalLocked = false;
+        touchStartTarget = e.target;
     }, { passive: true });
 
     appShell.addEventListener('touchmove', e => {
+        // ── Ignore if inside horizontal scroll container ──
+        if (touchStartTarget && touchStartTarget.closest('.project-cards-grid')) return;
+
         const dx = e.touches[0].clientX - touchStartX;
         const dy = Math.abs(e.touches[0].clientY - touchStartY);
-        touchDeltaX = dx;
-        if (!isSwiping && Math.abs(dx) > dy && Math.abs(dx) > 8) isSwiping = true;
-        if (isSwiping) {
-            const basePct = (currentIndex / totalSlides) * 100;
-            slidesWrapper.style.transition = 'none';
-            slidesWrapper.style.transform  = `translateX(calc(-${basePct}% + ${dx * 0.35}px))`;
+        const adx = Math.abs(dx);
+
+        // ── Lock direction after 10px movement ──
+        if (!isHorizontalLocked && !isVerticalLocked) {
+            if (adx > dy && adx > 10)      isHorizontalLocked = true;
+            else if (dy > adx && dy > 10)  isVerticalLocked = true;
         }
+
+        // ── Only handle horizontal swipes ──
+        if (!isHorizontalLocked) return;
+
+        touchDeltaX = dx;
+        isSwiping = true;
+
+        // ── Rubber band at edges ──
+        let resistance = 1;
+        if ((currentIndex === 0 && dx > 0) || (currentIndex === totalSlides - 1 && dx < 0)) {
+            resistance = 0.2;
+        }
+
+        const basePct = (currentIndex / totalSlides) * 100;
+        slidesWrapper.style.transition = 'none';
+        slidesWrapper.style.transform  = `translateX(calc(-${basePct}% + ${dx * resistance * 0.4}px))`;
     }, { passive: true });
 
     appShell.addEventListener('touchend', () => {
-        if (isSwiping) {
-            if      (touchDeltaX < -60) goToSlide(currentIndex + 1);
-            else if (touchDeltaX >  60) goToSlide(currentIndex - 1);
+        // ── Ignore if inside project cards ──
+        if (touchStartTarget && touchStartTarget.closest('.project-cards-grid')) {
+            touchDeltaX = 0; isSwiping = false; touchStartTarget = null;
+            isHorizontalLocked = false; isVerticalLocked = false;
+            return;
+        }
+        if (isSwiping && isHorizontalLocked) {
+            if      (touchDeltaX < -80) goToSlide(currentIndex + 1);
+            else if (touchDeltaX >  80) goToSlide(currentIndex - 1);
             else {
-                slidesWrapper.style.transition = 'transform 0.3s ease';
+                // ── Snap back smoothly ──
+                slidesWrapper.style.transition = 'transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)';
                 const pct = (currentIndex / totalSlides) * 100;
                 slidesWrapper.style.transform = `translateX(-${pct}%)`;
             }
         }
-        touchDeltaX = 0; isSwiping = false;
+        touchDeltaX = 0; isSwiping = false; touchStartTarget = null;
+        isHorizontalLocked = false; isVerticalLocked = false;
     }, { passive: true });
 
     // ── 10. Start ─────────────────────────────────────────────
