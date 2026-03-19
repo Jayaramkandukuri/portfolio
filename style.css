@@ -1150,6 +1150,11 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
         --m-radius: 18px;
         --m-radius-sm: 12px;
     }
+    
+    *, *::before, *::after {
+        -webkit-tap-highlight-color: transparent !important;
+        outline: none !important;
+    }
 
     /* Hero card mobile override */
     .hero-card {
