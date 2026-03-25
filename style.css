@@ -1621,7 +1621,7 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
     .tech-tag { font-size: 0.66em; padding: 2px 8px; background: var(--m-gold-dim); border-color: rgba(243,156,18,0.25); }
 
     #projects::after {
-        content: '← swipe →';
+        content: '← swipe cards →';
         display: block; text-align: center;
         font-size: 0.68em; color: var(--m-text-muted);
         letter-spacing: 1px; text-transform: uppercase;
@@ -1811,9 +1811,5 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
 
     body.light-mode #proj-modal-tech > div div[style*="font-size:0.72em"] {
         color: #666 !important;
-    }
-
-    #slides-wrapper {
-        transition: transform 0.4s ease, opacity 0.3s ease;
     }
 }
