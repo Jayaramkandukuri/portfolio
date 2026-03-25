@@ -3,6 +3,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 (function () {
+    let isSwipe = false;
     if (window.innerWidth > 768) return;
 
     // ── 1. Config ─────────────────────────────────────────────
@@ -246,12 +247,32 @@
     // ── 7. Navigate ───────────────────────────────────────────
     function goToSlide(index) {
         if (isAnimating || index < 0 || index >= totalSlides) return;
+        const swipeMode = isSwipe;   
+        isSwipe = false;            
+
         isAnimating  = true;
         currentIndex = index;
 
         const pct = (index / totalSlides) * 100;
-        slidesWrapper.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
+        if (swipeMode) {
+        // slidesWrapper.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
+        slidesWrapper.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
         slidesWrapper.style.transform  = `translateX(-${pct}%)`;
+        } else {
+            // 👉 Fade OUT
+            slidesWrapper.style.transition = 'opacity 0.3s ease';
+            slidesWrapper.style.opacity = '0';
+
+            setTimeout(() => {
+                // 👉 Move instantly (no slide)
+                slidesWrapper.style.transition = 'none';
+                slidesWrapper.style.transform = `translateX(-${pct}%)`;
+
+                // 👉 Fade IN
+                slidesWrapper.style.transition = 'opacity 0.3s ease';
+                slidesWrapper.style.opacity = '1';
+            }, 300);
+        }
 
         const targetSlide = allSlides[index];
         if (targetSlide) targetSlide.scrollTop = 0;
@@ -277,6 +298,7 @@
     // ── 8. Nav taps ───────────────────────────────────────────
     nav.querySelectorAll('.mobile-nav-item').forEach(btn => {
         btn.addEventListener('click', () => {
+            isSwipe = false; 
             const idx = NAV_TO_INDEX[btn.dataset.target];
             if (idx !== undefined) goToSlide(idx);
         });
@@ -306,8 +328,13 @@
 
         // ── Lock direction after 10px movement ──
         if (!isHorizontalLocked && !isVerticalLocked) {
-            if (adx > dy && adx > 10)      isHorizontalLocked = true;
-            else if (dy > adx && dy > 10)  isVerticalLocked = true;
+            if (adx > dy && adx > 10) {
+                isHorizontalLocked = true;
+                isSwipe = true; // ✅ ONLY when confirmed horizontal swipe
+            }
+            else if (dy > adx && dy > 10) {
+                isVerticalLocked = true;
+            }
         }
 
         // ── Only handle horizontal swipes ──
@@ -346,6 +373,9 @@
         }
         touchDeltaX = 0; isSwiping = false; touchStartTarget = null;
         isHorizontalLocked = false; isVerticalLocked = false;
+        setTimeout(() => {
+            isSwipe = false;
+        }, 50);
     }, { passive: true });
 
     // ── 10. Start ─────────────────────────────────────────────
