@@ -321,6 +321,7 @@
     }, { passive: true });
 
     appShell.addEventListener('touchmove', e => {
+        allSlides.forEach(slide => slide.style.opacity = '1');
         isSwipe = true;
         // ── Ignore if inside horizontal scroll container ──
         if (touchStartTarget && touchStartTarget.closest('.project-cards-grid')) return;
@@ -372,7 +373,7 @@
         touchDeltaX = 0; isSwiping = false; touchStartTarget = null;
         isHorizontalLocked = false; isVerticalLocked = false;
         setTimeout(() => {
-            isSwipe = false;
+            allSlides.forEach(slide => slide.style.opacity = '');
         }, 50);
     }, { passive: true });
 
