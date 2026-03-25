@@ -1813,12 +1813,7 @@ body.light-mode .indicator-dot.active::after { background: #e08e0b; color: #fff;
         color: #666 !important;
     }
 
-    .app-slide {
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-
-    .app-slide.active {
-        opacity: 1;
+    #slides-wrapper {
+        transition: transform 0.4s ease, opacity 0.3s ease;
     }
 }

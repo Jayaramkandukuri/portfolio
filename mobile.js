@@ -216,7 +216,6 @@
     }
 
     const allSlides = appShell.querySelectorAll('.app-slide');
-    allSlides[0].classList.add('active');
     allSlides.forEach(slide => {
         slide.querySelectorAll('.skill-mini-fill').forEach(bar => { bar.style.width = '0%'; });
     });
@@ -254,27 +253,22 @@
         const pct = (index / totalSlides) * 100;
         if (isSwipe) {
         // slidesWrapper.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
-        slidesWrapper.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
+        slidesWrapper.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
         slidesWrapper.style.transform  = `translateX(-${pct}%)`;
         } else {
-            // 👉 Button click = NO slide (instant switch)
+            // 👉 Fade OUT
+            slidesWrapper.style.transition = 'opacity 0.3s ease';
+            slidesWrapper.style.opacity = '0';
 
-            // remove active from previous
-            allSlides.forEach(slide => slide.classList.remove('active'));
+            setTimeout(() => {
+                // 👉 Move instantly (no slide)
+                slidesWrapper.style.transition = 'none';
+                slidesWrapper.style.transform = `translateX(-${pct}%)`;
 
-            // jump instantly
-            slidesWrapper.style.transition = 'none';
-            slidesWrapper.style.transform  = `translateX(-${pct}%)`;
-
-            // force reflow (important)
-            slidesWrapper.offsetHeight;
-
-            // add fade to new
-            const targetSlide = allSlides[index];
-            if (targetSlide) {
-                targetSlide.classList.add('active');
-                targetSlide.scrollTop = 0;
-            }
+                // 👉 Fade IN
+                slidesWrapper.style.transition = 'opacity 0.3s ease';
+                slidesWrapper.style.opacity = '1';
+            }, 300);
         }
 
         const targetSlide = allSlides[index];
@@ -321,7 +315,7 @@
     }, { passive: true });
 
     appShell.addEventListener('touchmove', e => {
-        allSlides.forEach(slide => slide.style.opacity = '1');
+        allSlides.forEach(slide => slide.style.opacity = '');
         isSwipe = true;
         // ── Ignore if inside horizontal scroll container ──
         if (touchStartTarget && touchStartTarget.closest('.project-cards-grid')) return;
