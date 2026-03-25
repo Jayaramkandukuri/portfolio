@@ -3,6 +3,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 (function () {
+    let isSwipe = false;
     if (window.innerWidth > 768) return;
 
     // ── 1. Config ─────────────────────────────────────────────
@@ -215,6 +216,7 @@
     }
 
     const allSlides = appShell.querySelectorAll('.app-slide');
+    allSlides[0].classList.add('active');
     allSlides.forEach(slide => {
         slide.querySelectorAll('.skill-mini-fill').forEach(bar => { bar.style.width = '0%'; });
     });
@@ -250,8 +252,30 @@
         currentIndex = index;
 
         const pct = (index / totalSlides) * 100;
-        slidesWrapper.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
+        if (isSwipe) {
+        // slidesWrapper.style.transition = 'transform 0.38s cubic-bezier(0.4, 0, 0.2, 1)';
+        slidesWrapper.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)';
         slidesWrapper.style.transform  = `translateX(-${pct}%)`;
+        } else {
+            // 👉 Button click = NO slide (instant switch)
+
+            // remove active from previous
+            allSlides.forEach(slide => slide.classList.remove('active'));
+
+            // jump instantly
+            slidesWrapper.style.transition = 'none';
+            slidesWrapper.style.transform  = `translateX(-${pct}%)`;
+
+            // force reflow (important)
+            slidesWrapper.offsetHeight;
+
+            // add fade to new
+            const targetSlide = allSlides[index];
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+                targetSlide.scrollTop = 0;
+            }
+        }
 
         const targetSlide = allSlides[index];
         if (targetSlide) targetSlide.scrollTop = 0;
@@ -297,6 +321,7 @@
     }, { passive: true });
 
     appShell.addEventListener('touchmove', e => {
+        isSwipe = true;
         // ── Ignore if inside horizontal scroll container ──
         if (touchStartTarget && touchStartTarget.closest('.project-cards-grid')) return;
 
@@ -346,6 +371,9 @@
         }
         touchDeltaX = 0; isSwiping = false; touchStartTarget = null;
         isHorizontalLocked = false; isVerticalLocked = false;
+        setTimeout(() => {
+            isSwipe = false;
+        }, 50);
     }, { passive: true });
 
     // ── 10. Start ─────────────────────────────────────────────
